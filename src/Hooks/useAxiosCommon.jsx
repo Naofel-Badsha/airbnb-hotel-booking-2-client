@@ -1,11 +1,9 @@
 import axios from "axios";
 
 export const axiosCommon = axios.create({
-    // ToDo: baseURL-------// import.meta.env.VITE_API_URL
-   baseURL: 'http://localhost:5000/',
-   
-
+   baseURL: import.meta.env.VITE_API_URL,
 })
+
 const useAxiosCommon = () => {
     return axiosCommon;
 };
