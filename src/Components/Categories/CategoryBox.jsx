@@ -37,6 +37,7 @@ const CategoryBox = ({ label, icon: Icon }) => {
         category === label && "border-b-neutral-800 text-neutral-800"
       } `}
     >
+  
       <Icon size={26} />
       <div className="text-sm font-medium">{label}</div>
     </div>

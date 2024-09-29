@@ -50,12 +50,12 @@ const Navbar = () => {
                   <div className="hidden md:block">
                     {/* Avatar */}
                     <img
-                      className="rounded-full"
+                      className="rounded-full w-[40px] h-[40px] "
                       referrerPolicy="no-referrer"
                       src={user && user.photoURL ? user.photoURL : avatarImg}
                       alt="profile"
-                      height="30"
-                      width="30"
+                      height="40"
+                      width="40"
                     />
                   </div>
                 </div>
@@ -88,7 +88,7 @@ const Navbar = () => {
                           Login
                         </Link>
                         <Link
-                          to="/signup"
+                          to="/singUp"
                           className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
                         >
                           Sign Up
