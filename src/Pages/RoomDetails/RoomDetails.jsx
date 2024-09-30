@@ -6,7 +6,6 @@ import Container from "../../Shared/Container/Container";
 import Heading from "../../Shared/Heading/Heading";
 import RoomReservation from "./RoomReservation";
 
-
 const RoomDetails = () => {
   const { id } = useParams();
   const axiosCommon = useAxiosCommon();

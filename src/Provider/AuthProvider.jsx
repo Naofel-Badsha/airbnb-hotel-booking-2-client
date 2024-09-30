@@ -1,18 +1,20 @@
+import PropTypes from 'prop-types'
 import { createContext, useEffect, useState } from "react";
 import {
+ 
   createUserWithEmailAndPassword,
   getAuth,
+  GoogleAuthProvider,
   onAuthStateChanged,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-
   signInWithPopup,
-
   signOut,
   updateProfile,
+
 } from "firebase/auth";
 import { app } from "../Firebase/firebase.config";
-import { GoogleAuthProvider } from "firebase/auth/web-extension";
+
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -90,4 +92,8 @@ const AuthProvider = ({ children }) => {
   );
 };
 
+AuthProvider.propTypes = {
+  // Array of children.
+  children: PropTypes.array,
+}
 export default AuthProvider;

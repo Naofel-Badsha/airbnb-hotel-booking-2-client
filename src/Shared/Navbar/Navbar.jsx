@@ -2,15 +2,13 @@ import { Link } from "react-router-dom";
 import Container from "../Container/Container";
 import useAuth from "../../Hooks/useAuth";
 import { useState } from "react";
-import avatarImg from '../../assets/images/placeholder.jpg'
+import avatarImg from "../../assets/images/placeholder.jpg";
 // import avatarImg from '../../../assets/images/placeholder.jpg'
 import { AiOutlineMenu } from "react-icons/ai";
 
-
-
 const Navbar = () => {
-  const {user, logOut} = useAuth();
-  const [isOpen, setIsOpen] = useState(false)
+  const { user, logOut } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">
@@ -72,6 +70,12 @@ const Navbar = () => {
 
                     {user ? (
                       <>
+                        <Link
+                          to="/dashboard"
+                          className="block px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                        >
+                          Dashboard
+                        </Link>
                         <div
                           onClick={logOut}
                           className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"
