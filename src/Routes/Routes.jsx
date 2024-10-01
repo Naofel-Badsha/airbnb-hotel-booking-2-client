@@ -6,6 +6,9 @@ import Login from "../Pages/Login/Login";
 import SingUp from "../Pages/Singup/Singup";
 import RoomDetails from "../Pages/RoomDetails/RoomDetails";
 import DashboardLayouth from "../Layouts/DashboardLayouth";
+import Statistics from "../Pages/Dashboard/Common/Statistics";
+import AddRoom from "../Pages/Dashboard/Host/AddRoom";
+import MyListing from "../Pages/Dashboard/Host/MyListing";
 
 
 const router = createBrowserRouter([
@@ -37,8 +40,17 @@ const router = createBrowserRouter([
     element: <DashboardLayouth></DashboardLayouth>,
     children: [
       {
-        
-      }
+        index: true,
+        element: <Statistics></Statistics>
+      },
+      {
+        path: "addRoom",
+        element: <AddRoom></AddRoom>
+      },
+      {
+        path: "myListing",
+        element: <MyListing></MyListing>
+      },
     ]
   },
 ]);

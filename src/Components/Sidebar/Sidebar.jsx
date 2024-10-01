@@ -6,7 +6,7 @@ import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
-import useAuth from "../../../Hooks/useAuth";
+import useAuth from "../../Hooks/useAuth";
 import { MdHomeWork } from "react-icons/md";
 
 const Sidebar = () => {
@@ -35,7 +35,7 @@ const Sidebar = () => {
           </div>
         </div>
 
-       {/*--------Responsive---Sideber---Toggle---Bar---button----*/}
+        {/*--------Responsive---Sideber---Toggle---Bar---button----*/}
         <button
           onClick={handleToggle}
           className="mobile-menu-button p-4 text-red-600  focus:outline-none focus:bg-gray-200"
@@ -51,29 +51,29 @@ const Sidebar = () => {
         }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
         <div>
-          <div>
-            <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto">
-              <Link to="/">
-                <img
-                  // className='hidden md:block'
-                  src="https://i.ibb.co/4ZXzmq5/logo.png"
-                  alt="logo"
-                  width="100"
-                  height="100"
-                />
-              </Link>
-            </div>
+          {/*-----------Logo---------*/}
+          <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto">
+            <Link to="/">
+              <img
+                // className='hidden md:block'
+                src="https://i.ibb.co/4ZXzmq5/logo.png"
+                alt="logo"
+                width="100"
+                height="100"
+              />
+            </Link>
           </div>
 
-          {/* Nav Items */}
+          {/*----------Nav----------Items----------*/}
           <div className="flex flex-col justify-between flex-1 mt-6">
-            {/* Conditional toggle button here.. */}
+            {/*.....Conditional toggle button here.....*/}
 
-            {/*  Menu Items */}
+            {/*--------Top-------Menu-------Items--------*/}
             <nav>
-              {/* Statistics */}
+              {/*------Statistics------*/}
               <NavLink
-                to="statistics"
+                to="/dashboard"
+                end
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
@@ -84,10 +84,9 @@ const Sidebar = () => {
 
                 <span className="mx-4 font-medium">Statistics</span>
               </NavLink>
-
-              {/* Add Room */}
+              {/*------Add-----Room------*/}
               <NavLink
-                to="add-room"
+                to="/dashboard/addRoom"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
@@ -98,9 +97,9 @@ const Sidebar = () => {
 
                 <span className="mx-4 font-medium">Add Room</span>
               </NavLink>
-              {/* My Listing */}
+              {/*------My------Listing------*/}
               <NavLink
-                to="my-listings"
+                to="myListing"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
@@ -115,9 +114,10 @@ const Sidebar = () => {
           </div>
         </div>
 
+        {/*--------Under-------Menu------Items----------*/}
         <div>
           <hr />
-          {/* Profile Menu */}
+          {/*-------Profile-------Menu-------*/}
           <NavLink
             to="/dashboard/profile"
             className={({ isActive }) =>
@@ -130,6 +130,7 @@ const Sidebar = () => {
 
             <span className="mx-4 font-medium">Profile</span>
           </NavLink>
+          {/*-----Logout------Button-------*/}
           <button
             onClick={logOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
