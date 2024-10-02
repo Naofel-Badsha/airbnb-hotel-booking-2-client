@@ -1,8 +1,15 @@
-
 import { categories } from "../Categories/CategoriesData";
 import { DateRange } from "react-date-range";
 import { TbFidgetSpinner } from "react-icons/tb";
-const AddRoomForm = ({dates, handleDates, handleSubmit}) => {
+const AddRoomForm = ({
+  dates,
+  handleDates,
+  handleSubmit,
+  imagePreview,
+  setImagePreview,
+  handleImage,
+  imageText,
+}) => {
   return (
     <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
       <form onSubmit={handleSubmit}>
@@ -49,7 +56,7 @@ const AddRoomForm = ({dates, handleDates, handleSubmit}) => {
               <DateRange
                 rangeColors={["#F43F5E"]}
                 editableDateInputs={true}
-                onChange={item => handleDates(item)}
+                onChange={(item) => handleDates(item)}
                 moveRangeOnFirstSelection={false}
                 ranges={[dates]}
               />
@@ -72,34 +79,41 @@ const AddRoomForm = ({dates, handleDates, handleSubmit}) => {
               />
             </div>
 
-            <div className=" p-4 bg-white w-full  m-auto rounded-lg flex justify-between items-center">
-              <div className="file_upload px-5 py-3 relative border-4 w-full border-dotted border-gray-300 rounded-lg">
+            <div className=" p-4 bg-white w-full  m-auto rounded-lg flex gap-4">
+              <div className="flex items-center file_upload px-5 relative border-4 w-full border-dotted border-gray-300 rounded-lg">
                 {/*----------Right-------Inpit--------2--------*/}
+                {/*-------Image-----Input------------*/}
                 <div className="flex flex-col w-max mx-auto text-center">
                   <label>
                     <input
                       className="text-sm cursor-pointer w-36 hidden"
                       type="file"
-                      // onChange={(e) => handleImage(e.target.files[0])}
+                      onChange={(e) => handleImage(e.target.files[0])}
                       name="image"
                       id="image"
                       accept="image/*"
-                      placeholder="Uplode image"
-                      hidden
                     />
                     <div className="bg-rose-500  border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500 ">
-                      {/* {imageText} */}
-                      {/* {imageText.length > 20
-                        ? imageText.split(".")[0].slice(0, 15) +
-                          "...." +
-                          imageText.split(".")[1]
-                        : imageText} */}
+                      {/*-----{imageText}-----*/}
+                      <h2 className="text-xl text-white">
+                        {imageText.length > 15
+                          ? imageText.split(".")[0].slice(0, 15) +
+                            "..." +
+                            imageText.split(".")[1]
+                          : imageText}
+                      </h2>
                     </div>
                   </label>
                 </div>
               </div>
-              <div className="h-16 w-16 object-cover overflow-hidden flex items-center">
-                {/* {imagePreview && <img src={imagePreview} />} */}
+              {/*-------Image-----Preview------------*/}
+              <div className="w-20 h-20 overflow-hidden">
+                {imagePreview && (
+                  <img
+                    className="w-20 h-20 object-cover overflow-hidden"
+                    src={imagePreview}
+                  />
+                )}
               </div>
             </div>
             {/*----------Right-------Inpit--------3--------*/}

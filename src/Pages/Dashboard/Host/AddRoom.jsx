@@ -5,7 +5,8 @@ import { imageUpload } from "../../../api/utils";
 
 const AddRoom = () => {
   const { user } = useAuth();
-
+  const [imagePreview, setImagePreview] = useState();
+  const [imageText, setImageText] = useState("Uplode images");
   const [dates, setDates] = useState({
     startDate: new Date(),
     endDate: null,
@@ -54,22 +55,32 @@ const AddRoom = () => {
         bedrooms,
         bathrooms,
         description,
+        host,
         image: image_url,
       };
-      console.log(roomData)
-
+      console.log(roomData);
     } catch (err) {
       console.log(err);
     }
   };
 
+  //-----Handle----inage-----change------
+  const handleImage = image => {
+    setImagePreview(URL.createObjectURL(image))
+    setImageText(image.name)
+  }
+
   return (
     <div>
-      <h1>Add Room Page</h1>
+      {/*--------Added-----Form------*/}
       <AddRoomForm
         dates={dates}
         handleDates={handleDates}
         handleSubmit={handleSubmit}
+        imagePreview={imagePreview}
+        setImagePreview={setImagePreview}
+        handleImage={handleImage}
+        imageText={imageText}
       ></AddRoomForm>
     </div>
   );
