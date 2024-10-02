@@ -2,14 +2,21 @@ import { useState } from "react";
 import AddRoomForm from "../../../Components/Form/AddRoomForm";
 import useAuth from "./../../../Hooks/useAuth";
 import { imageUpload } from "../../../api/utils";
+import useAxiosSecure from "./../../../Hooks/useAxiosSecure";
+import { useMutation} from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddRoom = () => {
-  const { user } = useAuth();
+  const navigate = useNavigate()
+  const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(false);
+  const { user} = useAuth();
   const [imagePreview, setImagePreview] = useState();
   const [imageText, setImageText] = useState("Uplode images");
   const [dates, setDates] = useState({
     startDate: new Date(),
-    endDate: null,
+    endDate: new Date(),
     key: "selection",
   });
 
@@ -19,8 +26,25 @@ const AddRoom = () => {
     setDates(item.selection);
   };
 
+  //-------addd-----Room-----useMutation-------
+  const {mutateAsync} = useMutation({
+    mutationFn : async roomData => {
+      const {data} = await axiosSecure.post(`/room`, roomData) 
+      return data
+    },
+    onSuccess: () => {
+      toast.success('Room Added SuccessFully');
+      console.log('Data Saved SuccessFully');
+      navigate('/dashboard/myListing')
+      setLoading(false);
+    }
+
+  }) 
+
+
   //----Form----Submit---Handler-----
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
     const form = e.target;
     const location = form.location.value;
@@ -57,18 +81,22 @@ const AddRoom = () => {
         description,
         host,
         image: image_url,
-      };
+      }
       console.log(roomData);
+      //---------added----Room---by----Database------
+      await mutateAsync(roomData)
     } catch (err) {
       console.log(err);
+      toast.error(err.message);
+      setLoading(false)
     }
   };
 
   //-----Handle----inage-----change------
-  const handleImage = image => {
-    setImagePreview(URL.createObjectURL(image))
-    setImageText(image.name)
-  }
+  const handleImage = (image) => {
+    setImagePreview(URL.createObjectURL(image));
+    setImageText(image.name);
+  };
 
   return (
     <div>
@@ -81,6 +109,7 @@ const AddRoom = () => {
         setImagePreview={setImagePreview}
         handleImage={handleImage}
         imageText={imageText}
+        loading={loading}
       ></AddRoomForm>
     </div>
   );

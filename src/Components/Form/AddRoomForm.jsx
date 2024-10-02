@@ -9,6 +9,7 @@ const AddRoomForm = ({
   setImagePreview,
   handleImage,
   imageText,
+  loading
 }) => {
   return (
     <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
@@ -193,16 +194,15 @@ const AddRoomForm = ({
         </div>
 
         <button
-          // disabled={loading}
+          disabled={loading}
           type="submit"
           className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-rose-500"
         >
-          {/* {loading ? (
+          {loading ? (
             <TbFidgetSpinner className="animate-spin m-auto" />
           ) : (
             " Save & Continue"
-          )} */}
-          Save & Continue
+          )}
         </button>
       </form>
     </div>

@@ -53,7 +53,7 @@ const RoomDetails = () => {
                   <div>Hosted by {room?.host?.name}</div>
 
                   <img
-                    className="rounded-full"
+                    className="rounded-full w-14 h-14 object-cover"
                     height="30"
                     width="30"
                     alt="Avatar"
