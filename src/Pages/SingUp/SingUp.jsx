@@ -2,8 +2,8 @@ import { FcGoogle } from "react-icons/fc";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import axios from "axios";
 import toast from 'react-hot-toast';
+import { imageUpload } from "../../api/utils";
 
 const SingUp = () => {
   const navigate = useNavigate();
@@ -17,24 +17,19 @@ const SingUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const image = form.image.files[0];
-    //----image---uplode--form---data----
-    const formData = new FormData()
-    formData.append('image', image)
+
 
     try {
       setLoading(true)
       // 1. Uplode Image and get image url
-      const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${
-        import.meta.env.VITE_IMGBB_API_KEY
-      }`,
-      formData
-    )
-      console.log(data.data.display_url)
+      const image_url = await imageUpload(image)
+      console.log(image_url)
+
       // 2. User Registation
       const result = await createUser(email, password)
       console.log(result)
       // 3. Save username and photo in firebase
-      await updateUserProfile(name, data.data.display_url)
+      await updateUserProfile(name, image_url)
       navigate('/')
       toast.success('Singup SuccessFull')
     } catch (err) {
