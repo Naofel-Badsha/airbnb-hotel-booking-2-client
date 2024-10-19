@@ -8,7 +8,8 @@ import RoomDetails from "../Pages/RoomDetails/RoomDetails";
 import DashboardLayouth from "../Layouts/DashboardLayouth";
 import Statistics from "../Pages/Dashboard/Common/Statistics";
 import AddRoom from "../Pages/Dashboard/Host/AddRoom";
-import MyListing from "../Pages/Dashboard/Host/MyListing";
+import MyListing from "../Pages/Dashboard/Host/MyListings";
+import Profile from "../Pages/Dashboard/Profile/Profile";
 
 
 const router = createBrowserRouter([
@@ -48,8 +49,12 @@ const router = createBrowserRouter([
         element: <AddRoom></AddRoom>
       },
       {
-        path: "myListing",
+        path: "myListings",
         element: <MyListing></MyListing>
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>
       },
     ]
   },
